@@ -1,0 +1,10 @@
+# nginx-ingress Helm Chart Values
+# Documentation: https://kubernetes.github.io/ingress-nginx/
+
+controller:
+  service:
+    # LoadBalancer on Docker Desktop exposes on localhost
+    type: LoadBalancer
+  
+  # Allow snippets for advanced routing (used by Kargo)
+  allowSnippetAnnotations: true

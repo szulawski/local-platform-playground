@@ -1,0 +1,27 @@
+# ArgoCD Helm Chart Values
+# Documentation: https://argo-cd.readthedocs.io/
+
+global:
+  domain: argocd.local
+
+server:
+  # Use ClusterIP - nginx-ingress will handle external access
+  service:
+    type: ClusterIP
+  
+  # Run in insecure mode (no TLS) - nginx-ingress handles SSL if needed
+  insecure: true
+  
+  # Extra args to disable TLS completely
+  extraArgs:
+    - --insecure
+  
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - argocd.local
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "false"

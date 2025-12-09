@@ -1,0 +1,6 @@
+# cert-manager Helm Chart Values
+# Documentation: https://cert-manager.io/docs/
+
+# Install CRDs as part of the Helm chart
+crds:
+  enabled: true

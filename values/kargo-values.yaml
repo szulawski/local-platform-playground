@@ -1,0 +1,33 @@
+# Kargo Helm Chart Values
+# Documentation: https://docs.kargo.io/
+
+api:
+  # API server hostname
+  host: kargo.local
+  
+  service:
+    # Use ClusterIP - nginx-ingress will handle external access
+    type: ClusterIP
+  
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    host: kargo.local
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      nginx.ingress.kubernetes.io/backend-protocol-h2c: "false"
+  
+  rollouts:
+    # Disable Argo Rollouts integration (not installed)
+    integrationEnabled: false
+
+controller:
+  argocd:
+    # Enable ArgoCD integration for GitOps workflows
+    integrationEnabled: true
+    namespace: argocd
+  
+  rollouts:
+    # Disable Argo Rollouts integration (not installed)
+    integrationEnabled: false
